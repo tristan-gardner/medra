@@ -17,9 +17,11 @@ def run():
 
     # Stream frames
     for frame in stub.StreamFrames(request):
-        print(f"Received frame from {frame.camera_id} at {frame.time_stamp}")
+        print(f"Received frame from {frame.camera_id} at {frame.time_stamp}: Latency {int(time.time() * 1000) - frame.time_stamp} ms")
         # Here, you can process the frame.img bytes (e.g., display it on a UI)
         time.sleep(1 / 30)  # Simulate 30 fps
+
+        # Code to show image as debug
         # img_array = np.frombuffer(frame.img, dtype=np.uint8)
         # img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)  # Decode the byte array into an image
 
