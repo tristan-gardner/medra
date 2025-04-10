@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package video;
+
+service VideoStreamer {
+  rpc StreamFrames (VideoFrameRequest) returns (stream VideoFrame);
+  rpc GetFrames (GetFrameRequest) returns (VideoFrame);
+  rpc HealthCheck (HealthCheckReq) returns (HealthCheckReply);
+}
+
+message VideoFrameRequest {
+  string camera_id = 1;
+}
+
+message VideoFrame {
+  string camera_id = 1;
+  bytes img = 2;
+  int64 time_stamp = 3;
+}
+
+message GetFrameRequest {
+  string camera_id = 1;
+  bool latest = 2;
+}
+
+message HealthCheckReq{
+  bool ok = 1;
+}
+
+message HealthCheckReply {
+  bool ok = 1;
+}
