@@ -13,7 +13,7 @@ class VideoStreamer(VideoStreamerServicer):
     def StreamFrames(self, request, context):
         while True:
             # Capture screen using cv2
-            screen = self.capture_screen()
+            screen = self.capture_screen(request.camera_id)
 
             # Send video frame
             frame = VideoFrame(
@@ -37,11 +37,11 @@ class VideoStreamer(VideoStreamerServicer):
     def HealthCheck(self, request, context):
         return HealthCheckReply(ok=True)
 
-    def capture_screen(self):
-        # Capture the screen using cv2
-        screen = np.array(cv2.VideoCapture(0).read()[1])  # Capture from primary display or you can specify a screen capture method
-        screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)  # Convert to RGB if needed
-        _, img_bytes = cv2.imencode('.jpg', screen, [cv2.IMWRITE_JPEG_QUALITY, 50])
+    def capture_screen(self, camera_id, quality=50):
+        # Capture the screen using cv2 if there were other camera sources here is where that could be handled
+        screen = np.array(cv2.VideoCapture(int(camera_id)).read()[1])  
+        screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)  
+        _, img_bytes = cv2.imencode('.jpg', screen, [cv2.IMWRITE_JPEG_QUALITY, quality])
         img_bytes = img_bytes.tobytes()
         return img_bytes
 
