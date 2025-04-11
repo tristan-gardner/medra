@@ -6,9 +6,14 @@ import numpy as np
 from video_pb2 import VideoFrame, VideoFrameRequest, HealthCheckReply, HealthCheckReq
 from video_pb2_grpc import VideoStreamerServicer, add_VideoStreamerServicer_to_server
 
+
+
+
+
+
 class VideoStreamer(VideoStreamerServicer):
     def __init__(self):
-        self.camera_id = '0'  # Default camera ID
+        self.buffer_map = {0: []}
 
     def StreamFrames(self, request, context):
         while True:
@@ -24,12 +29,13 @@ class VideoStreamer(VideoStreamerServicer):
             yield frame
             time.sleep(1 / 30)  # Simulate 30 fps streaming
 
-    def GetFrames(self, request, context):
+    def GetFrame(self, request, context):
         # Capture screen using cv2
-        screen = self.capture_screen()
+        print(request)
+        screen = self.capture_screen(request.camera_id)
 
         return VideoFrame(
-            camera_id=self.camera_id,
+            camera_id=request.camera_id,
             img=screen,
             time_stamp=int(time.time() * 1000)
         )
@@ -49,9 +55,9 @@ class VideoStreamer(VideoStreamerServicer):
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     add_VideoStreamerServicer_to_server(VideoStreamer(), server)
-    server.add_insecure_port('[::]:50051')
+    server.add_insecure_port('[::]:50058')
     server.start()
-    print("Server running on port 50051")
+    print("Server running on port 50058")
     try:
         while True:
             time.sleep(60 * 60 * 24)

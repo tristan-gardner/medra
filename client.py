@@ -6,11 +6,14 @@ import cv2
 import numpy as np
 
 def run():
-    channel = grpc.insecure_channel('localhost:50051')
+    channel = grpc.insecure_channel('localhost:50058')
     stub = VideoStreamerStub(channel)
 
     hc = stub.HealthCheck(HealthCheckReq(ok=True))
     print("Health Check:", hc.ok)
+
+    frame = stub.GetFrame(GetFrameRequest(camera_id='0', latest=False))
+    print(frame)
 
     # Create request
     request = VideoFrameRequest(camera_id='0')

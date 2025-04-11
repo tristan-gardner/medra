@@ -4,7 +4,7 @@ package video;
 
 service VideoStreamer {
   rpc StreamFrames (VideoFrameRequest) returns (stream VideoFrame);
-  rpc GetFrames (GetFrameRequest) returns (VideoFrame);
+  rpc GetFrame (GetFrameRequest) returns (VideoFrame);
   rpc HealthCheck (HealthCheckReq) returns (HealthCheckReply);
 }
 

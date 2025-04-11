@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0bvideo.proto\x12\x05video\"&\n\x11VideoFrameRequest\x12\x11\n\tcamera_id\x18\x01 \x01(\t\"@\n\nVideoFrame\x12\x11\n\tcamera_id\x18\x01 \x01(\t\x12\x0b\n\x03img\x18\x02 \x01(\x0c\x12\x12\n\ntime_stamp\x18\x03 \x01(\x03\"4\n\x0fGetFrameRequest\x12\x11\n\tcamera_id\x18\x01 \x01(\t\x12\x0e\n\x06latest\x18\x02 \x01(\x08\"\x1c\n\x0eHealthCheckReq\x12\n\n\x02ok\x18\x01 \x01(\x08\"\x1e\n\x10HealthCheckReply\x12\n\n\x02ok\x18\x01 \x01(\x08\x32\xc5\x01\n\rVideoStreamer\x12=\n\x0cStreamFrames\x12\x18.video.VideoFrameRequest\x1a\x11.video.VideoFrame0\x01\x12\x36\n\tGetFrames\x12\x16.video.GetFrameRequest\x1a\x11.video.VideoFrame\x12=\n\x0bHealthCheck\x12\x15.video.HealthCheckReq\x1a\x17.video.HealthCheckReplyb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0bvideo.proto\x12\x05video\"&\n\x11VideoFrameRequest\x12\x11\n\tcamera_id\x18\x01 \x01(\t\"@\n\nVideoFrame\x12\x11\n\tcamera_id\x18\x01 \x01(\t\x12\x0b\n\x03img\x18\x02 \x01(\x0c\x12\x12\n\ntime_stamp\x18\x03 \x01(\x03\"4\n\x0fGetFrameRequest\x12\x11\n\tcamera_id\x18\x01 \x01(\t\x12\x0e\n\x06latest\x18\x02 \x01(\x08\"\x1c\n\x0eHealthCheckReq\x12\n\n\x02ok\x18\x01 \x01(\x08\"\x1e\n\x10HealthCheckReply\x12\n\n\x02ok\x18\x01 \x01(\x08\x32\xc4\x01\n\rVideoStreamer\x12=\n\x0cStreamFrames\x12\x18.video.VideoFrameRequest\x1a\x11.video.VideoFrame0\x01\x12\x35\n\x08GetFrame\x12\x16.video.GetFrameRequest\x1a\x11.video.VideoFrame\x12=\n\x0bHealthCheck\x12\x15.video.HealthCheckReq\x1a\x17.video.HealthCheckReplyb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -42,5 +42,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_HEALTHCHECKREPLY']._serialized_start=212
   _globals['_HEALTHCHECKREPLY']._serialized_end=242
   _globals['_VIDEOSTREAMER']._serialized_start=245
-  _globals['_VIDEOSTREAMER']._serialized_end=442
+  _globals['_VIDEOSTREAMER']._serialized_end=441
 # @@protoc_insertion_point(module_scope)

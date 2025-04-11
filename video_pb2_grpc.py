@@ -39,8 +39,8 @@ class VideoStreamerStub(object):
                 request_serializer=video__pb2.VideoFrameRequest.SerializeToString,
                 response_deserializer=video__pb2.VideoFrame.FromString,
                 _registered_method=True)
-        self.GetFrames = channel.unary_unary(
-                '/video.VideoStreamer/GetFrames',
+        self.GetFrame = channel.unary_unary(
+                '/video.VideoStreamer/GetFrame',
                 request_serializer=video__pb2.GetFrameRequest.SerializeToString,
                 response_deserializer=video__pb2.VideoFrame.FromString,
                 _registered_method=True)
@@ -60,7 +60,7 @@ class VideoStreamerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetFrames(self, request, context):
+    def GetFrame(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -80,8 +80,8 @@ def add_VideoStreamerServicer_to_server(servicer, server):
                     request_deserializer=video__pb2.VideoFrameRequest.FromString,
                     response_serializer=video__pb2.VideoFrame.SerializeToString,
             ),
-            'GetFrames': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetFrames,
+            'GetFrame': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFrame,
                     request_deserializer=video__pb2.GetFrameRequest.FromString,
                     response_serializer=video__pb2.VideoFrame.SerializeToString,
             ),
@@ -129,7 +129,7 @@ class VideoStreamer(object):
             _registered_method=True)
 
     @staticmethod
-    def GetFrames(request,
+    def GetFrame(request,
             target,
             options=(),
             channel_credentials=None,
@@ -142,7 +142,7 @@ class VideoStreamer(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/video.VideoStreamer/GetFrames',
+            '/video.VideoStreamer/GetFrame',
             video__pb2.GetFrameRequest.SerializeToString,
             video__pb2.VideoFrame.FromString,
             options,
